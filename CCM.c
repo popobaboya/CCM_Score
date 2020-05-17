@@ -13,7 +13,7 @@ int selectDataNo(CCM *s[], int count); //데이터 수정, 삭제 시 번호 선
 int updateCCM(CCM *s); // 데이터 수정 함수
 void saveData(CCM *s[], int count); //파일입력 함수
 int loadData(CCM *s[]); //파일출력 함수
-void searchName(CCM *s[], int curi); //검색 함수
+int searchName(CCM *s[], int curi); //검색 함수
 int selectMenu();      //메인메뉴 출력 함수
   
 
@@ -94,7 +94,12 @@ int main(void){
         else if(menu==6){
             if(count==0)
             printf("데이터가 없습니다!\n");
-            else searchName(sp, curi);
+	    else{
+		int n=1;
+		while(n==1){
+            	 n = searchName(sp, curi);
+	   	}
+	    }
         }
     }
     printf("종료됨!\n");
@@ -235,12 +240,14 @@ int selectMenu(){
     return menu;
 }
 
-void searchName(CCM *s[], int curi){
+int searchName(CCM *s[], int curi){
     int scount =0;
     char search[60];
 
-    printf("검색할 이름 : ");
+    printf("\n검색할 이름(취소 : 0) : ");
     scanf("%s", search);
+
+    if(strcmp(search, "0")==0) return 0;
 
     printf("\n No name\n");
     printf("===================================================\n");
@@ -254,4 +261,5 @@ void searchName(CCM *s[], int curi){
         }
     }
     if(scount==0) printf("=> 검색된 데이터 없음!\n");
+    return 1;
 }
