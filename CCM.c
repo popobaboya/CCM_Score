@@ -245,7 +245,8 @@ int searchName(CCM *s[], int curi){
     char search[60];
 
     printf("\n검색할 이름(취소 : 0) : ");
-    scanf("%s", search);
+    fgets(search,60,stdin);
+    search[strlen(search)-1] = '\0';	
 
     if(strcmp(search, "0")==0) return 0;
 
